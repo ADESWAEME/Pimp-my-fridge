@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/mfz-rxtx-2.2-20081207-win-x64/mfz-rxtx-2.2-20081207-win-x64/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/substance-lite-feel.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/substance-swingx.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Deswaeme Alexandra/Downloads/Application/eclipse-jee-neon-3-win32-x86_64/eclipse/plugins/swingx.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
