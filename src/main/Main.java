@@ -14,7 +14,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//Fenetre fen = new Fenetre();
+		Fenetre fen = new Fenetre();
 		SerialTest main = new SerialTest();
 		main.initialize();
 		Thread t=new Thread() {

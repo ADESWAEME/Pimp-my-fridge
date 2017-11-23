@@ -1,5 +1,6 @@
 package modele;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import gnu.io.CommPortIdentifier; 
@@ -7,6 +8,8 @@ import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent; 
 import gnu.io.SerialPortEventListener; 
 import java.util.Enumeration;
+
+import java.util.ArrayList;
 
 
 public class SerialTest implements SerialPortEventListener {
@@ -25,7 +28,14 @@ public class SerialTest implements SerialPortEventListener {
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
+	/** Identifiant des trames de données */
+//	private static final String DataIdentifier = "D:";
+	/** Identifiant des trames de feedback */
+//	private static final String FeedbackIdentifier = "R:";
 
+	/** Message d'erreur en cas de buffer vide */
+//	private static final String EmptyBufferErrorMessage = "Underlying input stream returned zero bytes";
+	
 	public void initialize() {
                 // the next line is for Raspberry Pi and 
                 // gets us into the while loop and was suggested here was suggested http://www.raspberrypi.org/phpBB3/viewtopic.php?f=81&t=32186
@@ -87,17 +97,48 @@ public class SerialTest implements SerialPortEventListener {
 	 * Handle an event on the serial port. Read the data and print it.
 	 */
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
+		
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=input.readLine();
 				System.out.println(inputLine);
-			} catch (Exception e) {
+				String[] tokens = inputLine.substring(2).split(";", 5);
+				float[] values = parseFloatArray(tokens);
+				System.err.println(String.format("%s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4],values[5]));
+				float tin = values[0];
+				float tempRess = values[1];
+				float h = values[2];
+//				float temps = values[3];
+				notifyListeners(new Data(tin, tempRess, h));
+				
+			}
+			 catch (Exception e) {
 				e.printStackTrace();	//Permet de traquer les erreurs éventuel..
 			}
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
+	
+	
 	}
 
+	
+
+	private void notifyListeners(Data data) {
+		// TODO Auto-generated method stub
+		AbstractData sendData = new AbstractData();
+		sendData.notifyListeners(data);
+	}
+
+	private float[] parseFloatArray(String[] tokens) {
+		float[] r = new float[tokens.length];
+		int i = 0;
+		for (String tok : tokens) {
+			r[i++] = tok.toLowerCase().equals("nan") ? -1 : Float.parseFloat(tok);
+		}
+		return r;
+	}	
+	
+	
 	/*public static void main(String[] args) throws Exception {
 		SerialTest main = new SerialTest();
 		main.initialize();

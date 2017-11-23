@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 
 import org.jfree.chart.ChartPanel;
 
+import modele.Data;
+
 
 public class Fenetre {
 
@@ -29,6 +31,7 @@ public class Fenetre {
 	//private Regul regul;
 	
 	private JLabel temperature;
+	private JLabel tempRess;
 	private JLabel consigneLabel;
 	private JLabel hLabel;
 	
@@ -71,8 +74,7 @@ public class Fenetre {
 		frame.setSize(1700, 1450);
 		frame.setLocationRelativeTo(null);
 		JLabel logoExia = new JLabel("");
-		logoExia.setIcon(new ImageIcon("C:/Users/Deswaeme Alexandra/git/Projet - Pimp my fridge/img/logo-exia-cesi.png"));
-		
+		logoExia.setIcon(new ImageIcon("C:/Users/Deswaeme Alexandra/git/Projet - Pimp my fridge/img/logo-exia-cesi.png"));		
 		JLabel pimpMyFridge = new JLabel("Pimp My Fridge");
 		pimpMyFridge.setForeground(Color.RED);
 		Font caracteristiques = new Font("Courier", Font.BOLD, 30);
@@ -210,36 +212,50 @@ public class Fenetre {
 		hLabel.setHorizontalAlignment(SwingConstants.CENTER);	// Position du texte dans le panel_2
 		hLabel.setFont(new Font("Myriad Pro", Font.PLAIN, 23));	// Police et taille du texte
 		
+		tempRess = new JLabel("0\u00B0C");
+		tempRess.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		tempRess.setHorizontalAlignment(SwingConstants.CENTER);
+		tempRess.setForeground(new Color(0, 0, 0));
+		
+		JLabel lblTempRess = new JLabel("Temperature resssentis :");
+		lblTempRess.setForeground(new Color(0, 0, 0));
+		lblTempRess.setFont(new Font("Myriad Pro", Font.PLAIN, 23));
+		
+		
 		JLabel lblRalisationCesiExia = new JLabel("CESI Exia A2 - Alexandra DESWAEME _ Paul BELIN _ Vincent NAVARRO ");
 		lblRalisationCesiExia.setForeground(new Color(0, 0, 0));
 		lblRalisationCesiExia.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(45, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				gl_panel_2.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel_2.createSequentialGroup()
+						.addContainerGap(45, Short.MAX_VALUE)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+							.addComponent(lblRalisationCesiExia)
+							.addGroup(gl_panel_2.createSequentialGroup()
+								.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(lblTauxDhumiditer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblTempRess, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+									.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+									.addComponent(tempRess, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))))
+						.addContainerGap())
+			);
+			gl_panel_2.setVerticalGroup(
+				gl_panel_2.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel_2.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+							.addComponent(tempRess, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblTempRess, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblTauxDhumiditer, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
 						.addComponent(lblRalisationCesiExia)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(lblTauxDhumiditer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-								.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		)));
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTauxDhumiditer, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-					.addComponent(lblRalisationCesiExia)
-					.addContainerGap())
+						.addContainerGap())
 		);
 		panel_2.setLayout(gl_panel_2);
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
@@ -269,22 +285,21 @@ public class Fenetre {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
-	/*	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getActionCommand().equals("+")) {
-			regul.setTempConsigne(regul.getConsigneTemperature() + 1);
-		}
-		else
-		{
-			regul.setTempConsigne(regul.getConsigneTemperature() - 1);
-		}
-		
-		consigneLabel.setText(regul.getConsigneTemperature() + "°C");
-		
-	}
+//		@Override
+//	public void actionPerformed(ActionEvent arg0) {
+//		if (arg0.getActionCommand().equals("+")) {
+//			regul.setTempConsigne(regul.getConsigneTemperature() + 1);
+//		}
+//		else
+//		{
+//			regul.setTempConsigne(regul.getConsigneTemperature() - 1);
+//		}
+//		
+//		consigneLabel.setText(regul.getConsigneTemperature() + "°C");
+//		
+//	}
 
-	@Override
-	public void onNewStatementRead(Statement data) {
+	public void onNewDataRead(Data data) {
 		
 		// On met à jour les labels
 		temperature.setText(String.format("%.2f °C", data.getInteriorTemperature()));
@@ -295,30 +310,30 @@ public class Fenetre {
 		
 	}
 
-	@Override
-	public void consigneTempChanged(double temp) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				consigneLabel.setText(regul.getConsigneTemperature() + "°C");
-			}
-		});
-	}
-
-	@Override
-	public void consigneAllumageChanged(boolean enabled) {
-	}
-
-	@Override
-	public void alertCondChanged(boolean state) {
-	}
-
-	@Override
-	public void alertTempGapChanged(boolean state) {
-	}
-
-	@Override
-	public void onPowerStatusChanged(boolean powerOn) {
-	}*/
+//	@Override
+//	public void consigneTempChanged(double temp) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				consigneLabel.setText(regul.getConsigneTemperature() + "°C");
+//			}
+//		});
+//	}
+//
+//	@Override
+//	public void consigneAllumageChanged(boolean enabled) {
+//	}
+//
+//	@Override
+//	public void alertCondChanged(boolean state) {
+//	}
+//
+//	@Override
+//	public void alertTempGapChanged(boolean state) {
+//	}
+//
+//	@Override
+//	public void onPowerStatusChanged(boolean powerOn) {
+//	}*/
 
 	
 }
