@@ -195,6 +195,8 @@ void loop() {
   //Serial.print("Difference de temp: ");
   Serial.println(difference);
   Serial.print(";");
+  Serial.print(consigne);
+  Serial.print(";");
   
 
   //Serial.print(h,t,dht.convertFtoC(hi),rosee,difference);
