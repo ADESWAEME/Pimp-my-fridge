@@ -1,15 +1,8 @@
 package main;
 
-import java.awt.EventQueue;
-
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import modele.Data;
 import modele.SerialTest;
 import vue.Fenetre;
-import vue.Fenetre2;
 
 public class Main {
 	
@@ -26,6 +19,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		@SuppressWarnings("unused")
 		Fenetre fen = new Fenetre(data);
 		
 		Thread t=new Thread() {

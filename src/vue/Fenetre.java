@@ -2,7 +2,6 @@ package vue;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -320,6 +319,7 @@ public class Fenetre implements ActionListener {
 		temperature.setText(String.format("%.2f °C", data.getInteriorTemperature()));
 		hLabel.setText(String.format("%.1f", data.getHumidityRate()) + " %");
 		tempRess.setText(String.format("%.2f °C", data.getTemperatureRessenti()));
+		consigneLabel.setText(String.format("%.2f °C", data.getConsigne()));
 		// On ajoute la donnée au chart
 		chart.addData((float)data.getInteriorTemperature(),(float) data.getTemperatureRessenti());
 		

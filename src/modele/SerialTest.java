@@ -1,6 +1,5 @@
 package modele;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import gnu.io.CommPortIdentifier; 
@@ -22,6 +21,7 @@ public class SerialTest  implements SerialPortEventListener {
 	*/
 	private BufferedReader input;
 	/** The output stream to the port */
+	@SuppressWarnings("unused")
 	private OutputStream output;
 	/** Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
@@ -123,6 +123,7 @@ public class SerialTest  implements SerialPortEventListener {
 				data.setHumidityRate(h);
 				data.setInteriorTemperature(tin);
 				data.setTemperatureRessenti(temRess);
+				data.setConsigne(consigne);
 			}
 			 catch (Exception e) {
 				e.printStackTrace();	//Permet de traquer les erreurs éventuel..
