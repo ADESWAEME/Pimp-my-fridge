@@ -26,6 +26,7 @@ boolean frooze = false;
 
 int peltier = 3; //Le mosfet est sur le pin digital 3
 int readvalue = 0; 
+bool writting = false;
 
 
 //Calcul de la relation SteinhartHart
@@ -183,6 +184,8 @@ void loop() {
   //Programme sans java
   //Serial.print("Humidite: "); 
 
+  while(writing) {}
+  writing = true;
   Serial.print(h);
   Serial.print(";");
   //Serial.print(" %\t ");
@@ -202,6 +205,8 @@ void loop() {
   Serial.print(";");
   Serial.print(order);
   Serial.print(";");
+  
+  writing = false;
   
 
   //Serial.print(h,t,dht.convertFtoC(hi),rosee,difference);
@@ -230,5 +235,11 @@ void SerialEvent() {
     else {
       readvalue = 0;
     }  
+    while (writting) {} // synchro
+    writting = true;
+    Serial.print("R:");
+    Serial.println(readvalue);
+    writting = false;
+  }
   }
 }
