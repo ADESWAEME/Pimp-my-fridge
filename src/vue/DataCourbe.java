@@ -18,6 +18,7 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.Layer;
 import org.jfree.ui.RectangleEdge;
 
+
 @SuppressWarnings("serial")
 public class DataCourbe extends ApplicationFrame{
 	private JFreeChart texte;
@@ -70,7 +71,7 @@ public class DataCourbe extends ApplicationFrame{
 		  data.setSeriesPaint(1, new Color(0, 174, 189));
 		  data.setSeriesStroke(1,  new BasicStroke(2));
 		  
-		  plot.getRangeAxis().setRange(new Range(10, 35)); // Echelle du graphique T°C
+		  plot.getRangeAxis().setRange(new Range(- 10, 35)); // Echelle du graphique T°C
 		  plot.getRangeAxis().setTickLabelPaint(new Color(225,225,225));	// Couleur de la Température
 		  
 		 
@@ -102,7 +103,8 @@ public class DataCourbe extends ApplicationFrame{
 	public void addData(float tempIn, float tempRess)
 	{
 		compteur++;
-		this.tempIn.add(compteur,tempIn);
+		this.tempIn.add(compteur, tempIn);
+		this.tempRess.add(compteur,tempRess);
 	}
 
 }

@@ -47,16 +47,30 @@ public class Fenetre implements ActionListener {
 	public JButton btnConsignePlus;
 	public JButton btnConsigneMoins;
 	public JButton btnFullscreen;
-
+	private Data data;
 	
 
 	/**
 	 * Create the application.
 	 */
-	public Fenetre() {
+	public Fenetre(Data d) {
 		fenetre1();
-		//this.regul = regul;
+		this.data = d;
 		frame.setVisible(true);
+		int x = 0;
+		while (x == 0){
+			onNewDataRead();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
 		
 		
 		
@@ -137,10 +151,10 @@ public class Fenetre implements ActionListener {
 		JPanel panel_1 = new JPanel();
 		
 		JButton buttonMoins = new JButton("-");
-		//buttonMoins.addActionListener(this);
+		buttonMoins.addActionListener(this);
 		
 		JButton buttonPlus = new JButton("+");
-		//buttonPlus.addActionListener(this);
+		buttonPlus.addActionListener(this);
 		
 		temperature = new JLabel("0\u00B0C");
 		temperature.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -173,8 +187,8 @@ public class Fenetre implements ActionListener {
 								.addComponent(consigneLabel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))	//Valeur de consigne
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(buttonMoins, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)	// Largeur du boutton - de la consigne
-								.addComponent(buttonPlus, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)))	// Largeur du boutton + de la consigne
+								.addComponent(buttonMoins, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)	// Largeur du boutton - de la consigne
+								.addComponent(buttonPlus, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)))	// Largeur du boutton + de la consigne
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(temperatureActuelle)
 							.addGap(15)
@@ -235,11 +249,11 @@ public class Fenetre implements ActionListener {
 							.addGroup(gl_panel_2.createSequentialGroup()
 								.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
 									.addComponent(lblTauxDhumiditer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblTempRess, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+									.addComponent(lblTempRess, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-									.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-									.addComponent(tempRess, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(hLabel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+									.addComponent(tempRess, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
 						.addContainerGap())
 			);
 			gl_panel_2.setVerticalGroup(
@@ -263,7 +277,7 @@ public class Fenetre implements ActionListener {
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
 					.addGap(72)
 					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addContainerGap())
@@ -283,6 +297,7 @@ public class Fenetre implements ActionListener {
 		);
 		panel_3.setLayout(gl_panel_3);
 		frame.getContentPane().setLayout(groupLayout);
+		
 	}
 
 //		@Override
@@ -299,16 +314,17 @@ public class Fenetre implements ActionListener {
 //		
 //	}
 
-	public void onNewDataRead(Data data) {
+	public void onNewDataRead() {
 		
 		// On met à jour les labels
 		temperature.setText(String.format("%.2f °C", data.getInteriorTemperature()));
 		hLabel.setText(String.format("%.1f", data.getHumidityRate()) + " %");
-		
+		tempRess.setText(String.format("%.2f °C", data.getTemperatureRessenti()));
 		// On ajoute la donnée au chart
 		chart.addData((float)data.getInteriorTemperature(),(float) data.getTemperatureRessenti());
 		
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
