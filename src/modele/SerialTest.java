@@ -9,10 +9,9 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener; 
 import java.util.Enumeration;
 
-import java.util.ArrayList;
 
 
-public class SerialTest implements SerialPortEventListener {
+public class SerialTest  implements SerialPortEventListener {
 	SerialPort serialPort;
         /** The port we're normally going to use. */
 	private static final String PORT_NAMES = "COM3"; // Windows
@@ -35,6 +34,11 @@ public class SerialTest implements SerialPortEventListener {
 
 	/** Message d'erreur en cas de buffer vide */
 //	private static final String EmptyBufferErrorMessage = "Underlying input stream returned zero bytes";
+	
+	float h;
+	float tin;
+	float tempRess;
+	
 	
 	public void initialize() {
                 // the next line is for Raspberry Pi and 
@@ -101,17 +105,16 @@ public class SerialTest implements SerialPortEventListener {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=input.readLine();
-				System.out.println(inputLine);
-				String[] tokens = inputLine.substring(2).split(";", 5);
+//				System.out.println(inputLine);
+				String[] tokens = inputLine.substring(1).split(";", 5);
 				float[] values = parseFloatArray(tokens);
-//				System.err.println(String.format("%s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4]));
+				System.out.println(String.format("%s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4]));
 				
 				float h = values[0];
 				float tin = values[1];
 				float tempRess = values[2];
-				float rose = values[3];
-				System.out.printf("%s + %s + %s",h, tin, tempRess);
-				notifyListeners(new Data(tin, tempRess, h));
+//				float rose = values[3];
+//				System.out.printf("%s + %s + %s",h, tin, tempRess);
 //				System.out.print(tin);
 				
 			}
@@ -124,13 +127,8 @@ public class SerialTest implements SerialPortEventListener {
 	
 	}
 
-	
 
-	private void notifyListeners(Data data) {
-		// TODO Auto-generated method stub
-		AbstractData sendData = new AbstractData();
-		sendData.notifyListeners(data);
-	}
+
 
 	private float[] parseFloatArray(String[] tokens) {
 		float[] r = new float[tokens.length];
@@ -142,17 +140,17 @@ public class SerialTest implements SerialPortEventListener {
 	}	
 	
 	
-	/*public static void main(String[] args) throws Exception {
-		SerialTest main = new SerialTest();
-		main.initialize();
-		Thread t=new Thread() {
-			public void run() {
-				//the following line will keep this app alive for 1000 seconds,
-				//waiting for events to occur and responding to them (printing incoming messages to console).
-				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
-			}
-		};
-		t.start();
-		System.out.println("Started");
-	}*/
+//	public static void main(String[] args) throws Exception {
+//		SerialTest main = new SerialTest();
+//		main.initialize();
+//		Thread t=new Thread() {
+//			public void run() {
+//				//the following line will keep this app alive for 1000 seconds,
+//				//waiting for events to occur and responding to them (printing incoming messages to console).
+//				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
+//			}
+//		};
+//		t.start();
+//		System.out.println("Started");
+//	}
 }

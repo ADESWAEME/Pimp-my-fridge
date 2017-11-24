@@ -18,6 +18,9 @@ import javax.swing.border.TitledBorder;
 
 import org.jfree.chart.ChartPanel;
 
+
+
+
 public class Fenetre2 extends JFrame {
 
 	private static final long serialVersionUID = 1673388500927286919L;

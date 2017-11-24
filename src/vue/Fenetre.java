@@ -23,7 +23,7 @@ import org.jfree.chart.ChartPanel;
 import modele.Data;
 
 
-public class Fenetre {
+public class Fenetre implements ActionListener {
 
 	private JFrame frame;
 	
@@ -306,9 +306,19 @@ public class Fenetre {
 		hLabel.setText(String.format("%.1f", data.getHumidityRate()) + " %");
 		
 		// On ajoute la donnée au chart
-		chart.addData((float)data.getInteriorTemperature());
+		chart.addData((float)data.getInteriorTemperature(),(float) data.getTemperatureRessenti());
 		
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 
 //	@Override
 //	public void consigneTempChanged(double temp) {

@@ -18,6 +18,9 @@ public class Data {
 		this.tempRess = tempRess;
 	}
 	
+//	public void test (){
+//		System.out.printf("humi : ",getHumidityRate());
+//	}
 	/**
 	 * @return the h
 	 */

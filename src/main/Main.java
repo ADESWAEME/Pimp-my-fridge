@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import modele.Data;
 import modele.SerialTest;
 import vue.Fenetre;
 import vue.Fenetre2;
@@ -13,7 +14,7 @@ import vue.Fenetre2;
 public class Main {
 	
 	public static void main(String[] args) {
-		
+
 		Fenetre fen = new Fenetre();
 		SerialTest main = new SerialTest();
 		main.initialize();
@@ -26,6 +27,14 @@ public class Main {
 		};
 		t.start();
 		System.out.println("Started");
-}
+		
+			
+				
+			
+	}
+
+
+		
+	
 }
 	

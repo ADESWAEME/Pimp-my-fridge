@@ -99,7 +99,7 @@ public class DataCourbe extends ApplicationFrame{
 		return texte;
 	}
 	
-	public void addData(float tempIn)
+	public void addData(float tempIn, float tempRess)
 	{
 		compteur++;
 		this.tempIn.add(compteur,tempIn);
