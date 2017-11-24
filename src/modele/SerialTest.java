@@ -123,7 +123,7 @@ public class SerialTest  implements SerialPortEventListener {
 				data.setHumidityRate(h);
 				data.setInteriorTemperature(tin);
 				data.setTemperatureRessenti(temRess);
-				data.setConsigne(consigne);
+//				data.setConsigne(consigne);
 			}
 			 catch (Exception e) {
 				e.printStackTrace();	//Permet de traquer les erreurs éventuel..

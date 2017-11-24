@@ -198,9 +198,9 @@ void loop() {
   Serial.print(rosee);
   Serial.print(";");
   //Serial.print("Difference de temp: ");
-  Serial.println(difference);
+  Serial.print(difference);
   Serial.print(";");
-  Serial.print(consigne);
+  Serial.print(order);
   Serial.print(";");
   
 
