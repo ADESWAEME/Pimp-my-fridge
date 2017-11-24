@@ -23,7 +23,7 @@ public class DataCourbe extends ApplicationFrame{
 	private JFreeChart texte;
 	@SuppressWarnings("unused")
 	private DefaultCategoryDataset dataset;
-	private XYSeries tempExt;
+	private XYSeries tempRess;
 	private XYSeries tempIn;
 	
 	private long compteur;
@@ -83,14 +83,14 @@ public class DataCourbe extends ApplicationFrame{
 	{
 		//dataset = new DefaultCategoryDataset( );
 		XYSeriesCollection dataset = new XYSeriesCollection();
-		tempExt = new XYSeries("T° Ext");
+		tempRess = new XYSeries("T° Ress");
 		tempIn = new XYSeries("T° In");
 
-		dataset.addSeries(tempExt);
+		dataset.addSeries(tempRess);
 		dataset.addSeries(tempIn);
 		
 		this.tempIn.setMaximumItemCount(600);
-		this.tempExt.setMaximumItemCount(600);
+		this.tempRess.setMaximumItemCount(600);
 		
 		return dataset;
 	}

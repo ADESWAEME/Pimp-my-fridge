@@ -101,15 +101,18 @@ public class SerialTest implements SerialPortEventListener {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=input.readLine();
-			//	System.out.println(inputLine);
+				System.out.println(inputLine);
 				String[] tokens = inputLine.substring(2).split(";", 5);
 				float[] values = parseFloatArray(tokens);
-				System.err.println(String.format("%s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4],values[5]));
+//				System.err.println(String.format("%s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4]));
+				
 				float h = values[0];
 				float tin = values[1];
 				float tempRess = values[2];
-//				float rose = values[3];
+				float rose = values[3];
+				System.out.printf("%s + %s + %s",h, tin, tempRess);
 				notifyListeners(new Data(tin, tempRess, h));
+//				System.out.print(tin);
 				
 			}
 			 catch (Exception e) {
