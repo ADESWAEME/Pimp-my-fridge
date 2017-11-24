@@ -177,7 +177,7 @@ void loop() {
 
   //Programme sans java
   //Serial.print("Humidite: "); 
-  Serial.print(";");
+  //Serial.print(";");
   Serial.print(h);
   Serial.print(";");
   //Serial.print(" %\t ");
