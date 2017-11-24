@@ -21,7 +21,6 @@ public class SerialTest  implements SerialPortEventListener {
 	*/
 	private BufferedReader input;
 	/** The output stream to the port */
-	@SuppressWarnings("unused")
 	private OutputStream output;
 	/** Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
@@ -109,7 +108,7 @@ public class SerialTest  implements SerialPortEventListener {
 		
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
-				String inputLine=input.readLine();
+				String inputLine = input.readLine();
 //				System.out.println(inputLine);
 				String[] tokens = inputLine.substring(1).split(";", 6);
 				float[] values = parseFloatArray(tokens);
@@ -123,10 +122,11 @@ public class SerialTest  implements SerialPortEventListener {
 				data.setHumidityRate(h);
 				data.setInteriorTemperature(tin);
 				data.setTemperatureRessenti(temRess);
-//				data.setConsigne(consigne);
+				data.setConsigne(consigne);
 			}
 			 catch (Exception e) {
-				e.printStackTrace();	//Permet de traquer les erreurs éventuel..
+				
+				 //e.printStackTrace();	//Permet de traquer les erreurs éventuel..
 			}
 		}
 		

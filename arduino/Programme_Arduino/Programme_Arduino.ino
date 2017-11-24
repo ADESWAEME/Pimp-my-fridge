@@ -184,8 +184,10 @@ void loop() {
   //Programme sans java
   //Serial.print("Humidite: "); 
 
-  while(writing) {}
-  writing = true;
+  while(writting) {}
+  writting = true;
+  
+  Serial.print(";");
   Serial.print(h);
   Serial.print(";");
   //Serial.print(" %\t ");
@@ -203,15 +205,15 @@ void loop() {
   //Serial.print("Difference de temp: ");
   Serial.print(difference);
   Serial.print(";");
-  Serial.print(order);
+  Serial.println(order);
   Serial.print(";");
   
-  writing = false;
+  writting = false;
   
 
   //Serial.print(h,t,dht.convertFtoC(hi),rosee,difference);
   
-  delay(5000); //Pause d'1 sec puis reprise du programme
+  delay(1000); //Pause d'1 sec puis reprise du programme
   
 }
 
@@ -236,10 +238,10 @@ void SerialEvent() {
       readvalue = 0;
     }  
     while (writting) {} // synchro
-    writting = true;
+    //writting = true;
     Serial.print("R:");
     Serial.println(readvalue);
-    writting = false;
+    //writting = false;
   }
-  }
+ 
 }

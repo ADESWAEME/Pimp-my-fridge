@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +61,7 @@ public class Fenetre implements ActionListener {
 		while (x == 0){
 			onNewDataRead();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -154,6 +155,7 @@ public class Fenetre implements ActionListener {
 		
 		JButton buttonPlus = new JButton("+");
 		buttonPlus.addActionListener(this);
+		
 		
 		temperature = new JLabel("0\u00B0C");
 		temperature.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -299,19 +301,8 @@ public class Fenetre implements ActionListener {
 		
 	}
 
-//		@Override
-//	public void actionPerformed(ActionEvent arg0) {
-//		if (arg0.getActionCommand().equals("+")) {
-//			regul.setTempConsigne(regul.getConsigneTemperature() + 1);
-//		}
-//		else
-//		{
-//			regul.setTempConsigne(regul.getConsigneTemperature() - 1);
-//		}
-//		
-//		consigneLabel.setText(regul.getConsigneTemperature() + "°C");
-//		
-//	}
+	
+	
 
 	public void onNewDataRead() {
 		
@@ -326,21 +317,25 @@ public class Fenetre implements ActionListener {
 	}
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getActionCommand().equals("+")) {
+			data.setConsigne(data.getConsigne() + 1);
+		}
+		else
+		{
+			data.setConsigne(data.getConsigne() - 1);
+		}
+		
+		consigneLabel.setText(data.getConsigne() + "°C");
 		
 	}
 
 
 
-
-
-//	@Override
-//	public void consigneTempChanged(double temp) {
+//	public void consigneTempChanged() {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
-//				consigneLabel.setText(regul.getConsigneTemperature() + "°C");
+//				consigneLabel.setText(data.getConsigne() + "°C");
 //			}
 //		});
 //	}
