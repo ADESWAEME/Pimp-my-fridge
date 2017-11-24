@@ -24,6 +24,10 @@ double order = 18;
 boolean power = true;
 boolean frooze = false;
 
+int peltier = 3; //Le mosfet est sur le pin digital 3
+int readvalue = 0; 
+
+
 //Calcul de la relation SteinhartHart
 double SteinhartHart(double R)
 {
@@ -53,6 +57,7 @@ DHT dht(DHTPIN, DHTTYPE); //Déclaration de l'Hygromètre
 void setup() {
   pinMode(12,OUTPUT); //Définition du PIN 12 en sortie
   Serial.begin(9600); //Ouvre le port série et fixe le debit de communication à 9600 bauds
+  pinMode(peltier, OUTPUT); //Le pin digital est fermé pour le moment
   dht.begin(); //Lancement du fonctionnement de l'hygromètre
 
 }
@@ -203,4 +208,27 @@ void loop() {
   
   delay(5000); //Pause d'1 sec puis reprise du programme
   
+}
+
+void SerialEvent() {
+  while (Serial.available()){
+
+    readvalue = Serial.parseInt();
+
+    //Condition si l'humidité est supérieure à 60% on active le module peltier
+    if(readvalue == 1) {
+      digitalWrite(peltier, HIGH);
+    }
+
+    //Condition si la température est supérieure à 18°C on indique que le frigo doit être ouvert
+    else if (readvalue == 2) {
+      digitalWrite(peltier, LOW);
+      return;
+    }
+
+    //Condition si la température est inférieure à 14°C on active le module peltier
+    else {
+      readvalue = 0;
+    }  
+  }
 }
