@@ -25,7 +25,7 @@ boolean power = true;
 boolean frooze = false;
 
 int peltier = 3; //Le mosfet est sur le pin digital 3
-int readvalue = 0; 
+int readvalue = 1.0; 
 bool writting = false;
 
 
@@ -205,7 +205,10 @@ void loop() {
   //Serial.print("Difference de temp: ");
   Serial.print(difference);
   Serial.print(";");
-  Serial.println(order);
+  Serial.print(order);
+  Serial.print(";");
+  Serial.println(readvalue);
+  
   Serial.print(";");
   
   writting = false;
@@ -223,12 +226,12 @@ void SerialEvent() {
     readvalue = Serial.parseInt();
 
     //Condition si l'humidité est supérieure à 60% on active le module peltier
-    if(readvalue == 1) {
+    if(readvalue == 1.0) {
       digitalWrite(peltier, HIGH);
     }
 
     //Condition si la température est supérieure à 18°C on indique que le frigo doit être ouvert
-    else if (readvalue == 2) {
+    else if (readvalue == 2.0) {
       digitalWrite(peltier, LOW);
       return;
     }

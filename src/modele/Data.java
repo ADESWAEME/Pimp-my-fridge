@@ -6,6 +6,7 @@ public class Data {
 	private double tempIn;
 	private double tempRess;
 	private double cons;
+	private double peltier;
 	
 
 	/**
@@ -50,6 +51,15 @@ public class Data {
 		cons = consi;
 	}
 	
+	
+	
+	/**
+	 * @return the tempRessenti
+	 */
+	public void setPeltier(double pelt) {
+		peltier = pelt;
+	}
+	
 	/**
 	 * @return the h
 	 */
@@ -57,7 +67,14 @@ public class Data {
 		return cons;
 	}
 
-	
+
+	/**
+	 * @return the h
+	 */
+	public double getPeltier() {
+		return peltier;
+	}
+
 	
 	
 	/**

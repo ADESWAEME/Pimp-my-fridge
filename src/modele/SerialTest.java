@@ -110,19 +110,21 @@ public class SerialTest  implements SerialPortEventListener {
 			try {
 				String inputLine = input.readLine();
 //				System.out.println(inputLine);
-				String[] tokens = inputLine.substring(1).split(";", 6);
+				String[] tokens = inputLine.substring(1).split(";", 7);
 				float[] values = parseFloatArray(tokens);
-				System.out.println(String.format("%s + %s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4],values[5]));
+				System.out.println(String.format("%s + %s + %s + %s + %s + %s + %s", values[0],values[1],values[2],values[3],values[4],values[5],values[6]));
 				
 				float h = values[0];
 				float tin = values[1];
 				float temRess = values[2];
 				float consigne = values[5];
+				float peltier = values[6];
 				
 				data.setHumidityRate(h);
 				data.setInteriorTemperature(tin);
 				data.setTemperatureRessenti(temRess);
 				data.setConsigne(consigne);
+				data.setPeltier(peltier);
 			}
 			 catch (Exception e) {
 				
